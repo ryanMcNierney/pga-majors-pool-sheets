@@ -1,5 +1,5 @@
 var cron = require('node-cron');
-const { liveDataON } = require('../scrapers/scoreScraper')
+const { liveDataON, liveDataOFF } = require('../scrapers/scoreScraper')
 
 const job = cron.schedule('*/2 * * * *', () => {
   liveDataON()
@@ -15,6 +15,7 @@ const cronON = () => {
 const cronOFF = () => {
   job.stop()
   console.log('Cron job OFF')
+  liveDataOFF()
 }
 
 module.exports = { cronON, cronOFF }
