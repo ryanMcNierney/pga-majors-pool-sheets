@@ -1,23 +1,20 @@
-const CronJob = require('cron').CronJob
+var cron = require('node-cron');
 const { liveDataON } = require('../scrapers/scoreScraper')
 
-let job
+const job = cron.schedule('*/2 * * * *', () => {
+  liveDataON()
+}, {
+    scheduled: false
+  })
 
 const cronON = () => {
-  console.log('Before job instantiation');
-  job = new CronJob('0 */2 * * * *', function () {
-    const d = new Date();
-    console.log('Every 2nd Minute:', d)
-    liveDataON()
-  });
-
-  console.log('After job instantiation');
-  job.start();
-  console.log('is job running? ', job.running);
+  job.start()
+  console.log('Cron job ON')
 }
 
 const cronOFF = () => {
   job.stop()
+  console.log('Cron job OFF')
 }
 
 module.exports = { cronON, cronOFF }
