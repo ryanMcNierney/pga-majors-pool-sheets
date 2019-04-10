@@ -36,7 +36,7 @@ const createScoreTable = async () => {
       const bonus = bonusCheck(position)
 
       // build the scoreTable
-      scoreTable.push([position, player, bonus, par, thru, today, rnd_1, rnd_2, rnd_3, rnd_4, total])
+      scoreTable.push([position, player, par, bonus, today, thru, rnd_1, rnd_2, rnd_3, rnd_4, total])
 
     })
 
