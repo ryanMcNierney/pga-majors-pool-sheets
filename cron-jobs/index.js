@@ -2,7 +2,7 @@ var cron = require('node-cron')
 const https = require('https')
 const { liveDataON, liveDataOFF } = require('../scrapers/scoreScraper')
 
-const job = cron.schedule('*/2 * * * *', () => {
+const job = cron.schedule('*/5 * * * *', () => {
   liveDataON()
   https.get('https://pga-majors-pool-sheets.herokuapp.com/') // get heroku awake
 }, {
