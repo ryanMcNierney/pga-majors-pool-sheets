@@ -19,7 +19,7 @@ jwtClient.authorize(function (err) {
 
 const updateGoogleScores = (batch) => {
   try {
-    const data = [{ range: 'liveData!A4:L147', values: batch }]
+    const data = [{ range: 'liveData!A4:K203', values: batch }]
     const resource = { data, valueInputOption: 'USER_ENTERED' }
 
     // write to google sheet
