@@ -6,7 +6,7 @@ const cheerio = require('cheerio')
 const { parCheck, bonusCheck, totalCheck } = require('./scoreUtils')
 const { updateGoogleScores, updateGoogleTime, updateGoogleDataON, updateGoogleDataOFF } = require('./sheetsUpdater')
 
-const url = 'https://www.flashscore.com/golf/pga-tour/pga-championship/'
+const url = 'https://www.flashscore.com/golf/pga-tour/us-open/'
 
 const createScoreTable = async () => {
   try {
