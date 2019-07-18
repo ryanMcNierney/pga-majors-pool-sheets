@@ -18,22 +18,23 @@ const createScoreTable = async () => {
     const $ = cheerio.load(html)
 
     const scoreTable = []
-    $('.sportName.golf').children('div').each((i, elem) => {
-      // rows
+    $('.sportName.golf > div').children('div').each((i, elem) => {
       const id = $(elem).attr('id')
       if (id) {
-        const row = $(elem).children()
+        const divCount = $(elem).children().length
+        const rows = $(elem).children()
+
         // stats
-        const position = $(row[0]).text()
-        const player = $(row[1]).text()
-        const par = parCheck(position, Number($(row[2]).text()))
-        const thru = $(row[3]).text()
-        const today = Number($(row[4]).text())
-        const rnd_1 = (position === 'WD') ? 80 : Number($(row[5]).text())
-        const rnd_2 = (position === 'WD') ? 80 : Number($(row[6]).text())
-        const rnd_3 = (position === 'CUT' || position === 'WD') ? 80 : Number($(row[7]).text())
-        const rnd_4 = (position === 'CUT' || position === 'WD') ? 80 : Number($(row[8]).text())
-        const totalNum = Number($(row[9]).text()) // total helper
+        const position = $(elem).children('.event__rating').text()
+        const player = $(elem).children('.event__participant').text()
+        const par = parCheck(position, Number($(rows[divCount - 8]).text()))
+        const thru = $(rows[divCount - 7]).text()
+        const today = Number($(rows[divCount - 6]).text())
+        const rnd_1 = (position === 'WD') ? 80 : Number($(rows[divCount - 5]).text())
+        const rnd_2 = (position === 'WD') ? 80 : Number($(rows[divCount - 4]).text())
+        const rnd_3 = (position === 'CUT' || position === 'WD') ? 80 : Number($(rows[divCount - 3]).text())
+        const rnd_4 = (position === 'CUT' || position === 'WD') ? 80 : Number($(rows[divCount - 2]).text())
+        const totalNum = Number($(rows[divCount - 1]).text()) // total helper
         const total = totalCheck(position, totalNum)
 
         // bonus check
